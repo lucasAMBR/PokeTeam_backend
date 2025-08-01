@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Services\TeamService;
 
 use App\Http\Requests\UpdateTeamPokemonsRequest;
+use App\Http\Requests\StoreTeamRequest;
 
 class TeamController extends Controller
 {
@@ -24,19 +25,11 @@ class TeamController extends Controller
         return response()->json($teams);
     }
 
-    public function store(Request $request)
+    public function store(StoreTeamRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'pokemons' => 'sometimes|array',
-            'pokemons.*.name' => 'required|string',
-            'pokemons.*.image_url' => 'required|url',
-            'pokemons.*.types' => 'required|array',
-        ]);
-
         $userId = $request->user()->id;
 
-        $team = $this->teamService->createTeam($validated, $userId);
+        $team = $this->teamService->createTeam($request->validated(), $userId);
 
         return response()->json($team, 201);
     }
