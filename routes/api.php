@@ -29,3 +29,5 @@ Route::get('/pokemons/geracao/{id}', [PokemonController::class, 'getPokemonByGen
 Route::middleware('auth:sanctum')->post('/teams', [TeamController::class, 'store']);
 // Se a equipe estiver vazia adiciona pokemons, se estiver cheia substitui os pokemons dela pelos novos
 Route::middleware('auth:sanctum')->put('/teams/{team}/pokemons', [TeamController::class, 'updatePokemons']);
+
+Route::middleware('auth:sanctum')->delete('/teams/{team}', [TeamController::class, 'destroy']);

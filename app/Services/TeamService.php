@@ -36,6 +36,14 @@ class TeamService
             'team_id' => $team->id,
             'pokemons' => $team->pokemons
         ];
-}
+    }
+
+    public function deleteTeam(int $teamId, int $userId): void
+    {
+        $team = $this->repository->findByIdAndUser($teamId, $userId);
+
+        $this->repository->deleteTeam($team);
+    }
+
 
 }

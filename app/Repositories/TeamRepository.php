@@ -36,4 +36,15 @@ public function findByIdAndUser(int $id, int $userId): Team
             ]);
         }
     }
+
+    // TeamRepository.php
+
+    public function deleteTeam(Team $team): void
+    {
+        // Garante que pokémons relacionados sejam deletados (se não estiver usando onDelete('cascade'))
+        $team->pokemons()->delete();
+
+        $team->delete();
+    }
+
 }

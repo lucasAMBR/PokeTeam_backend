@@ -40,4 +40,13 @@ class TeamController extends Controller
 
         return response()->json($data);
     }
+
+    public function destroy(Request $request, $teamId)
+    {
+        $userId = $request->user()->id;
+
+        $this->teamService->deleteTeam($teamId, $userId);
+
+        return response()->json(['message' => 'Equipe deletada com sucesso.']);
+    }
 }
