@@ -34,14 +34,13 @@ class PokemonService
                 $name = $names[$index];
                 $species = $speciesList[$index];
 
-                // Tenta buscar do cache individual
                 $cached = Cache::get("pokemon_details_{$name}");
 
                 if ($cached) {
                     $data = $cached;
                 } elseif ($res->successful()) {
                     $data = $res->json();
-                    Cache::put("pokemon_details_{$name}", $data, 1440); // cache 1 dia
+                    Cache::put("pokemon_details_{$name}", $data, 1440);
                 } else {
                     continue;
                 }
