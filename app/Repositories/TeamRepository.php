@@ -6,6 +6,13 @@ use App\Models\Pokemon;
 
 class TeamRepository
 {
+    public function getTeamsByUserId(int $userId)
+    {
+        return Team::with('pokemons')
+            ->where('user_id', $userId)
+            ->get();
+    }
+
     public function createTeam(array $data, int $userId): Team
     {
         return Team::create([
@@ -14,12 +21,12 @@ class TeamRepository
         ]);
     }
 
-public function findByIdAndUser(int $id, int $userId): Team
-{
-    return Team::where('id', $id)
-        ->where('user_id', $userId)
-        ->firstOrFail();
-}
+    public function findByIdAndUser(int $id, int $userId): Team
+    {
+        return Team::where('id', $id)
+            ->where('user_id', $userId)
+            ->firstOrFail();
+    }
 
     public function deleteAllPokemonsFromTeam(Team $team): void
     {

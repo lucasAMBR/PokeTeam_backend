@@ -13,6 +13,12 @@ class TeamService
         $this->repository = $repository;
     }
 
+    public function getTeamsByUser(int $userId)
+    {
+        return $this->repository->getTeamsByUserId($userId);
+    }
+
+
     public function createTeam(array $data, int $userId): Team
     {
         $team = $this->repository->createTeam($data, $userId);

@@ -15,6 +15,15 @@ class TeamController extends Controller
         $this->teamService = $teamService;
     }
 
+    public function index(Request $request)
+    {
+        $userId = $request->user()->id;
+
+        $teams = $this->teamService->getTeamsByUser($userId);
+
+        return response()->json($teams);
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
