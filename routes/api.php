@@ -6,17 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TesteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
-
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+use App\Http\Controllers\PokemonController;
 
 Route::get('/teste', [TesteController::class, 'index']);
-
-//Registra um usuario
-Route::post('/users', [UserController::class, 'store']);
-//Login do usuario
-Route::post('/login', [AuthController::class, 'login']);
 
 //Teste de rota autenticada
 Route::middleware('auth:sanctum')->get('/perfil', function (Request $request) {
@@ -24,3 +16,10 @@ Route::middleware('auth:sanctum')->get('/perfil', function (Request $request) {
         'usuario' => $request->user()
     ]);
 });
+
+//Rotas para autenticação do usuario
+Route::post('/users', [UserController::class, 'store']);
+Route::post('/login', [AuthController::class, 'login']);
+
+//Rota para buscar lista de pokemons
+Route::get('/pokemons/geracao/{id}', [PokemonController::class, 'getPokemonByGeneration']);
