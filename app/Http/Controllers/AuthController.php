@@ -18,7 +18,6 @@ class AuthController extends Controller
 
      public function login(LoginRequest $request)
     {
-        \Log::info('Test log - should appear now');
 
         $data = $this->authService->login(
             $request->input('email'),

@@ -10,6 +10,12 @@
 
         public function register(array $data)
         {
+            $existingUser = $this->repository->findByEmail($data['email']);
+
+            if ($existingUser) {
+                abort(409, "Email já está em uso!");
+            }
+
             $data['password'] = Hash::make($data['password']);
             return $this->repository->register($data);
         }

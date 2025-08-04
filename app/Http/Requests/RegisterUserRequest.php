@@ -23,16 +23,16 @@ class RegisterUserRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'O nome é obrigatório.',
+            'name.required' => 'O nome e obrigatório.',
             'name.string' => 'O nome deve ser uma string.',
             'name.max' => 'O nome deve ter no máximo 100 caracteres.',
 
-            'email.required' => 'O e-mail é obrigatório.',
-            'email.email' => 'O e-mail informado não é válido.',
-            'email.unique' => 'Este e-mail já está em uso.',
+            'email.required' => 'O e-mail e obrigatório.',
+            'email.email' => 'O e-mail informado não e válido.',
+            'email.unique' => 'Este e-mail ja esta em uso.',
 
             'password.required' => 'A senha é obrigatória.',
-            'password.min' => 'A senha deve ter no mínimo 6 caracteres.',
+            'password.min' => 'A senha deve ter no minimo 6 caracteres.',
             'password.confirmed' => 'A confirmação da senha não corresponde.',
         ];
     }

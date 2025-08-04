@@ -24,10 +24,14 @@
                 ]);
             }
 
-            $token = $user->createToken('auth_token')->plainTextToken;
+            $token = $user->createToken('auth_token');
+
+            $expirationMinutes = 60;
+            $token->accessToken->expires_at = now()->addMinutes($expirationMinutes);
+            $token->accessToken->save();
 
             return [
-                'acess_token' => $token,
+                'acess_token' => $token->plainTextToken,
                 'token_type' => 'Bearer',
                 'user' => $user
             ];
