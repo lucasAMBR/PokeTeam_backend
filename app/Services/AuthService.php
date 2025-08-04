@@ -20,7 +20,7 @@
 
             if(!$user ||  !Hash::check($password, $user->password)){
                 throw ValidationException::withMessages([
-                    'email' => ['Invalid credentials.'],
+                    'email' => ['Email e/ou Senha Incorreta.'],
                 ]);
             }
 
